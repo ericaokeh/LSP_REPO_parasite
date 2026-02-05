@@ -1,0 +1,7 @@
+ProductID,Name,Price,Category
+7,USB Cable,9.99,Electronics
+8,  Office Chair  ,150.00, Furniture
+badid,Pen,1.00,Stationery
+14,Notebook,abc,Stationery
+15,TooFewFields,9.99
+16,Too,Many,Fields,Here
