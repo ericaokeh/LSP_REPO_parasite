@@ -28,66 +28,79 @@ public class ETLPipeline {
         int rowsRead = 0, rowsTransformed = 0, rowsSkipped = 0;
 
         try {
-            // Check if input file exists
+            // Check if input file exists (Case C)
             File inputFile = new File(inputFilePath);
             if (!inputFile.exists()) {
                 System.out.println("Error: Input file not found at " + inputFilePath);
                 return;
             }
 
-            // Read the input file
+            // Read input file
             List<String> lines = Files.readAllLines(Paths.get(inputFilePath));
-            if (lines.isEmpty()) {
-                // Handle empty input file
-                Files.write(Paths.get(outputFilePath), Collections.singletonList("ProductID,Name,Price,Category,PriceRange"));
-                System.out.println("Input file is empty. Output file created with only the header.");
+
+            // Always write the correct output header
+            transformedRows.add(new String[]{
+                "ProductID", "Name", "Price", "Category", "PriceRange"
+            });
+
+            // Case B: empty or header-only file
+            if (lines.size() <= 1) {
+                Files.write(
+                    Paths.get(outputFilePath),
+                    Collections.singletonList("ProductID,Name,Price,Category,PriceRange")
+                );
+                System.out.println("Input file contains no data rows. Output file created with header only.");
                 return;
             }
 
-            // Process rows
-            String header = lines.get(0);
-            transformedRows.add(header.split(","));
+            // Process data rows
             for (int i = 1; i < lines.size(); i++) {
                 rowsRead++;
                 String line = lines.get(i).trim();
 
-                // Skip blank rows or rows with incorrect format
+                // Skip blank or malformed rows
                 if (line.isEmpty() || line.split(",").length != 4) {
                     rowsSkipped++;
                     continue;
                 }
 
                 String[] fields = line.split(",");
+
                 try {
                     int productId = Integer.parseInt(fields[0].trim());
                     String name = fields[1].trim().toUpperCase();
                     double price = Double.parseDouble(fields[2].trim());
                     String category = fields[3].trim();
 
-                    // Apply transformations
+                    // Apply Electronics discount
                     if (category.equalsIgnoreCase("Electronics")) {
-                        price *= 0.9; // Apply 10% discount
-                        price = roundPrice(price);
+                        price *= 0.9;
                         if (price > 500.00) {
                             category = "Premium Electronics";
                         }
                     }
 
+                    // Round price for ALL products
+                    price = roundPrice(price);
+
                     String priceRange = determinePriceRange(price);
+
                     transformedRows.add(new String[]{
-                            String.valueOf(productId),
-                            name,
-                            String.format("%.2f", price),
-                            category,
-                            priceRange
+                        String.valueOf(productId),
+                        name,
+                        String.format("%.2f", price),
+                        category,
+                        priceRange
                     });
+
                     rowsTransformed++;
+
                 } catch (NumberFormatException e) {
                     rowsSkipped++;
                 }
             }
 
-            // Write transformed data to output file
+            // Write output file
             try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputFilePath))) {
                 for (String[] row : transformedRows) {
                     writer.write(String.join(",", row));
