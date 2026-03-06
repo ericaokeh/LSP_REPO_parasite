@@ -8,6 +8,9 @@ Update internal state based on flight system inputs
 Collaborators:
 Transponder
 
+Assumptions:
+None
+
 
 
 
@@ -22,6 +25,8 @@ Collaborators:
 Aircraft
 GroundStation
 
+Assumptions:
+None
 
 
 
@@ -36,6 +41,9 @@ Update AircraftDatabase with the latest aircraft information
 Collaborators:
 Transponder
 AircraftDatabase
+
+Assumptions:
+None
 
 
 
@@ -54,6 +62,9 @@ GraphicsDisplay
 ControllerInterface
 SystemAnalyzer
 
+Assumptions:
+None
+
 
 
 Class: SystemAnalyzer
@@ -66,6 +77,9 @@ Flag conflicts or hazards for GraphicsDisplay to alert the controller
 Collaborators:
 AircraftDatabase
 GraphicsDisplay
+
+Assumptions:
+None
 
 
 
@@ -81,6 +95,9 @@ Collaborators:
 AircraftDatabase
 SystemAnalyzer
 
+Assumptions:
+None
+
 
 
 Class: ControllerInterface
@@ -93,6 +110,10 @@ Present requested aircraft data to the human controller in a readable format
 Collaborators:
 AircraftDatabase
 GraphicsDisplay
+
+Assumptions:
+None
+
 
 
 
