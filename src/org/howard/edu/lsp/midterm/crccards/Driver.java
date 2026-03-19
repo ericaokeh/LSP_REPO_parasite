@@ -1,43 +1,58 @@
 package org.howard.edu.lsp.midterm.crccards;
 
 import java.util.List;
-import java.util.Iterator;
 
+/**
+ * Driver class to test Task and TaskManager functionality.
+ * Demonstrates adding tasks, handling duplicates,
+ * filtering by status, and finding tasks.
+ * 
+ * @author Erica
+ */
 public class Driver {
+
     public static void main(String[] args) {
+
         TaskManager manager = new TaskManager();
 
-        // These variables (t1, t2) refer to objects in memory.
-        Task t1 = new Task("T1", "Finish Midterm");
-        Task t2 = new Task("T2", "Grab Coffee");
+        Task t1 = new Task("T1", "Write report");
+        Task t2 = new Task("T2", "Study for exam");
+        Task t3 = new Task("T3", "Submit homework");
 
+        // Add tasks to manager
         manager.addTask(t1);
         manager.addTask(t2);
+        manager.addTask(t3);
 
-        // Practice safe coding: Catch exceptions for "anything that can go wrong."
-        try {
-            manager.addTask(new Task("T1", "I'm a duplicate!"));
-        } catch (IllegalArgumentException e) {
-            System.out.println("Caught an identity conflict: " + e.getMessage());
-        }
+        // Update status of a task
+        t2.setStatus("IN_PROGRESS");
 
-        // Display results using the Iterator pattern.
+        System.out.println("OPEN TASKS");
         List<Task> openTasks = manager.getTasksByStatus("OPEN");
-        System.out.println("\n--- Current Tasks ---");
-        
-        Iterator<Task> it = openTasks.iterator();
-        while (it.hasNext()) {
-            // toString() is called implicitly here—classic OO behavior.
-            System.out.println(it.next());
+        for (Task t : openTasks) {
+            System.out.println(t.toString());
         }
-        System.out.println("\n--- Find Task ---");
-        System.out.println(manager.findTask("T1"));
 
-        System.out.println("\n--- Invalid Status Test ---");
+        System.out.println("\nTESTING DUPLICATE TASK ID");
         try {
-            t1.setStatus("DONE");
+            Task duplicate = new Task("T1", "Duplicate task");
+            manager.addTask(duplicate);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Duplicate task ID detected.");
+        }
+
+        System.out.println("\nTESTING INVALID STATUS");
+        Task t4 = new Task("T4", "Invalid status test");
+        t4.setStatus("DONE");
+        System.out.println(t4.toString());
+
+        System.out.println("\nTESTING FIND TASK");
+        Task found = manager.findTask("T2");
+        System.out.println(found);
+
+        Task notFound = manager.findTask("T99");
+        if (notFound == null) {
+            System.out.println("Task not found.");
         }
     }
 }
