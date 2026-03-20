@@ -30,7 +30,7 @@ public class TaskManager {
      * 
      * @param task the task to add
      * @throws IllegalArgumentException if task is null, has null ID,
-     * or if a duplicate ID exists.
+     *         or if a duplicate ID exists.
      */
     public void addTask(Task task) {
         if (task == null || task.getTaskId() == null) {

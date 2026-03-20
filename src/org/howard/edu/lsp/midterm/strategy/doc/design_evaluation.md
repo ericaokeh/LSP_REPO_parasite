@@ -1,5 +1,7 @@
 # PriceCalculator Design Evaluation
 
+**Author:** Erica
+
 The original `PriceCalculator` class used multiple `if` statements to calculate discounts for different customer types.  
 
 Design issues:
