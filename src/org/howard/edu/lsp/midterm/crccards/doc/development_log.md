@@ -2,7 +2,7 @@
 
 ## External Resources Used
 
-### AI Tool: Chat GBT
+### AI Tool: ChatGPT
 
 ---
 

@@ -32,6 +32,8 @@ public class Task {
     }
 
     /**
+     * Returns the task ID.
+     *
      * @return task ID
      */
     public String getTaskId() {
@@ -39,6 +41,8 @@ public class Task {
     }
 
     /**
+     * Returns the task description.
+     *
      * @return task description
      */
     public String getDescription() {
@@ -46,6 +50,8 @@ public class Task {
     }
 
     /**
+     * Returns the current task status.
+     *
      * @return task status
      */
     public String getStatus() {
@@ -57,9 +63,7 @@ public class Task {
      * Valid values: OPEN, IN_PROGRESS, COMPLETE.
      * Otherwise sets to UNKNOWN.
      * 
-     * Status comparisons are now strictly case-sensitive to match spec.
-     * 
-     * @param status new status value
+     *@param status new status value
      */
     public void setStatus(String status) {
         if (status == null) {
