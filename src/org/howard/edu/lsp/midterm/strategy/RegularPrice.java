@@ -1,11 +1,9 @@
 package org.howard.edu.lsp.midterm.strategy;
 
 /**
- * Regular pricing strategy — no discount applied.
+ * Strategy for REGULAR customers – no discount.
  */
 public class RegularPrice implements PriceStrategy {
-
-    @Override
     public double calculate(double price) {
         return price;
     }

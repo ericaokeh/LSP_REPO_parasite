@@ -1,23 +1,20 @@
 package org.howard.edu.lsp.midterm.strategy;
 
 /**
- * Driver class to demonstrate the Strategy Pattern for pricing.
+ * Driver to demonstrate Strategy Pattern for PriceCalculator.
  */
 public class Driver {
-
     public static void main(String[] args) {
-        double basePrice = 100.00;
+        double basePrice = 100.0;
 
-        PriceCalculator calculator = new PriceCalculator(new RegularPrice());
-        System.out.println("Regular Price: $" + calculator.calculate(basePrice));
+        PriceCalculator regularCalc = new PriceCalculator(new RegularPrice());
+        PriceCalculator memberCalc = new PriceCalculator(new MemberPrice());
+        PriceCalculator vipCalc = new PriceCalculator(new VIPPrice());
+        PriceCalculator holidayCalc = new PriceCalculator(new HolidayPrice());
 
-        calculator.setStrategy(new MemberPrice());
-        System.out.println("Member Price:  $" + calculator.calculate(basePrice));
-
-        calculator.setStrategy(new VIPPrice());
-        System.out.println("VIP Price:     $" + calculator.calculate(basePrice));
-
-        calculator.setStrategy(new HolidayPrice());
-        System.out.println("Holiday Price: $" + calculator.calculate(basePrice));
+        System.out.println("REGULAR: " + regularCalc.calculatePrice(basePrice));
+        System.out.println("MEMBER: " + memberCalc.calculatePrice(basePrice));
+        System.out.println("VIP: " + vipCalc.calculatePrice(basePrice));
+        System.out.println("HOLIDAY: " + holidayCalc.calculatePrice(basePrice));
     }
 }
