@@ -13,8 +13,9 @@ public class Task {
     private String status;
 
     /**
-     * Constructs a Task.
-     * 
+     * Constructs a Task with the given ID and description.
+     * Status defaults to OPEN.
+     *
      * @param taskId unique task ID
      * @param description task description
      */
