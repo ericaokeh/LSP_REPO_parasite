@@ -17,6 +17,9 @@ public class TaskManager {
 
     private Map<String, Task> tasks;
 
+    /**
+     * Constructs an empty TaskManager.
+     */
     public TaskManager() {
         this.tasks = new HashMap<>();
     }

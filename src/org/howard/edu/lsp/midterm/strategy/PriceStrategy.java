@@ -2,6 +2,8 @@ package org.howard.edu.lsp.midterm.strategy;
 
 /**
  * Interface for Strategy Pattern to calculate price.
+ *
+ * @author Erica
  */
 public interface PriceStrategy {
     /**

@@ -2,8 +2,16 @@ package org.howard.edu.lsp.midterm.strategy;
 
 /**
  * Driver to demonstrate Strategy Pattern for PriceCalculator.
+ *
+ * @author Erica
  */
 public class Driver {
+
+    /**
+     * Main method demonstrating all pricing strategies.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         double basePrice = 100.0;
 

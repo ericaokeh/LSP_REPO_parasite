@@ -11,6 +11,11 @@ import java.util.List;
  */
 public class Driver {
 
+    /**
+     * Main method demonstrating Task and TaskManager functionality.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
 
         TaskManager manager = new TaskManager();

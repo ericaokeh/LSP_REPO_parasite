@@ -74,6 +74,11 @@ public class Task {
         }
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return formatted string with task ID, description, and status
+     */
     @Override
     public String toString() {
         return taskId + " " + description + " [" + status + "]";
