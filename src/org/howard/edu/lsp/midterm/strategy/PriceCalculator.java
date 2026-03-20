@@ -6,6 +6,7 @@ package org.howard.edu.lsp.midterm.strategy;
  * @author Erica
  */
 public class PriceCalculator {
+
     private PriceStrategy strategy;
 
     /**
