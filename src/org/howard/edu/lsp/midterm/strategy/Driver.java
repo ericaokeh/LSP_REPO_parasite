@@ -7,6 +7,11 @@ package org.howard.edu.lsp.midterm.strategy;
  */
 public class Driver {
 
+    /**
+     * Main method demonstrating all pricing strategies.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         double basePrice = 100.0;
 
