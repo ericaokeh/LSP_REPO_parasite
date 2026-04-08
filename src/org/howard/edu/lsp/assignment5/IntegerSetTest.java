@@ -88,7 +88,9 @@ public class IntegerSetTest {
     @DisplayName("equals() returns true for sets with same elements in different order")
     public void testEquals() {
         IntegerSet copy = new IntegerSet();
-        copy.add(3); copy.add(1); copy.add(2);
+        copy.add(3);
+        copy.add(1);
+        copy.add(2);
         assertTrue(set1.equals(copy), "Sets with same elements should be equal");
     }
 
@@ -127,7 +129,9 @@ public class IntegerSetTest {
     @DisplayName("hashCode() is equal for two equal sets")
     public void testHashCodeEqualSets() {
         IntegerSet copy = new IntegerSet();
-        copy.add(3); copy.add(1); copy.add(2);
+        copy.add(3);
+        copy.add(1);
+        copy.add(2);
         assertEquals(set1.hashCode(), copy.hashCode());
     }
 
@@ -141,7 +145,9 @@ public class IntegerSetTest {
     @DisplayName("hashCode() contract holds inside a HashSet")
     public void testHashCodeInHashSet() {
         IntegerSet copy = new IntegerSet();
-        copy.add(2); copy.add(1); copy.add(3);
+        copy.add(2);
+        copy.add(1);
+        copy.add(3);
         HashSet<IntegerSet> container = new HashSet<>();
         container.add(set1);
         assertTrue(container.contains(copy), "Equal IntegerSet must be found in HashSet");
@@ -189,7 +195,9 @@ public class IntegerSetTest {
     @DisplayName("largest() works with negative numbers")
     public void testLargestNegatives() {
         IntegerSet s = new IntegerSet();
-        s.add(-5); s.add(-1); s.add(-3);
+        s.add(-5);
+        s.add(-1);
+        s.add(-3);
         assertEquals(-1, s.largest());
     }
 
@@ -209,7 +217,9 @@ public class IntegerSetTest {
     @DisplayName("smallest() works with negative numbers")
     public void testSmallestNegatives() {
         IntegerSet s = new IntegerSet();
-        s.add(-5); s.add(-1); s.add(-3);
+        s.add(-5);
+        s.add(-1);
+        s.add(-3);
         assertEquals(-5, s.smallest());
     }
 
@@ -271,7 +281,10 @@ public class IntegerSetTest {
     public void testUnion() {
         IntegerSet result = set1.union(set2);
         IntegerSet expected = new IntegerSet();
-        expected.add(1); expected.add(2); expected.add(3); expected.add(4);
+        expected.add(1);
+        expected.add(2);
+        expected.add(3);
+        expected.add(4);
         assertTrue(result.equals(expected));
         assertEquals(4, result.length());
     }
@@ -312,15 +325,20 @@ public class IntegerSetTest {
     public void testIntersect() {
         IntegerSet result = set1.intersect(set2);
         IntegerSet expected = new IntegerSet();
-        expected.add(2); expected.add(3);
+        expected.add(2);
+        expected.add(3);
         assertTrue(result.equals(expected));
     }
 
     @Test
     @DisplayName("intersect() of disjoint sets returns empty set")
     public void testIntersectDisjoint() {
-        IntegerSet a = new IntegerSet(); a.add(1); a.add(2);
-        IntegerSet b = new IntegerSet(); b.add(3); b.add(4);
+        IntegerSet a = new IntegerSet();
+        a.add(1);
+        a.add(2);
+        IntegerSet b = new IntegerSet();
+        b.add(3);
+        b.add(4);
         assertTrue(a.intersect(b).isEmpty());
     }
 
@@ -367,7 +385,9 @@ public class IntegerSetTest {
     @DisplayName("diff() of identical sets returns empty set")
     public void testDiffIdentical() {
         IntegerSet copy = new IntegerSet();
-        copy.add(1); copy.add(2); copy.add(3);
+        copy.add(1);
+        copy.add(2);
+        copy.add(3);
         assertTrue(set1.diff(copy).isEmpty());
     }
 
@@ -438,7 +458,9 @@ public class IntegerSetTest {
     @DisplayName("toString() sorts elements in ascending order")
     public void testToStringSorted() {
         IntegerSet s = new IntegerSet();
-        s.add(3); s.add(1); s.add(2);
+        s.add(3);
+        s.add(1);
+        s.add(2);
         assertEquals("[1, 2, 3]", s.toString());
     }
 
@@ -446,7 +468,9 @@ public class IntegerSetTest {
     @DisplayName("toString() handles negative numbers correctly")
     public void testToStringNegatives() {
         IntegerSet s = new IntegerSet();
-        s.add(0); s.add(-2); s.add(3);
+        s.add(0);
+        s.add(-2);
+        s.add(3);
         assertEquals("[-2, 0, 3]", s.toString());
     }
 
@@ -487,7 +511,8 @@ public class IntegerSetTest {
     @DisplayName("equals() returns false for sets with different sizes")
     public void testEqualsDifferentSizes() {
         IntegerSet smaller = new IntegerSet();
-        smaller.add(1); smaller.add(2);
+        smaller.add(1);
+        smaller.add(2);
         assertFalse(set1.equals(smaller));
     }
 
@@ -519,7 +544,8 @@ public class IntegerSetTest {
     @DisplayName("add() and contains() work correctly with zero and negatives")
     public void testAddZeroAndNegative() {
         IntegerSet s = new IntegerSet();
-        s.add(0); s.add(-7);
+        s.add(0);
+        s.add(-7);
         assertTrue(s.contains(0));
         assertTrue(s.contains(-7));
         assertEquals(2, s.length());
@@ -611,7 +637,8 @@ public class IntegerSetTest {
     public void testIntersectSubset() {
         // set2 contains {2,3,4}; subset = {2,3}
         IntegerSet subset = new IntegerSet();
-        subset.add(2); subset.add(3);
+        subset.add(2);
+        subset.add(3);
         IntegerSet result = set2.intersect(subset);
         assertTrue(result.equals(subset));
     }
@@ -631,7 +658,9 @@ public class IntegerSetTest {
     @Test
     @DisplayName("diff() returns empty set when A is a subset of B")
     public void testDiffASubsetOfB() {
-        IntegerSet a = new IntegerSet(); a.add(2); a.add(3); // subset of set2 {2,3,4}
+        IntegerSet a = new IntegerSet();
+        a.add(2);
+        a.add(3); // subset of set2 {2,3,4}
         assertTrue(a.diff(set2).isEmpty());
     }
 
@@ -652,7 +681,9 @@ public class IntegerSetTest {
     @Test
     @DisplayName("complement() returns empty set when B is a subset of A")
     public void testComplementBSubsetOfA() {
-        IntegerSet b = new IntegerSet(); b.add(1); b.add(2); // subset of set1 {1,2,3}
+        IntegerSet b = new IntegerSet();
+        b.add(1);
+        b.add(2); // subset of set1 {1,2,3}
         assertTrue(set1.complement(b).isEmpty());
     }
 
@@ -723,7 +754,9 @@ public class IntegerSetTest {
     @DisplayName("union(B).intersect(C) produces correct result")
     public void testChainedUnionIntersect() {
         IntegerSet setC = new IntegerSet();
-        setC.add(3); setC.add(6); setC.add(7);
+        setC.add(3);
+        setC.add(6);
+        setC.add(7);
         // ({1,2,3} ∪ {2,3,4}) ∩ {3,6,7} = {1,2,3,4} ∩ {3,6,7} = {3}
         IntegerSet result = set1.union(set2).intersect(setC);
         assertEquals(1, result.length());
@@ -746,7 +779,8 @@ public class IntegerSetTest {
     @DisplayName("chained operations do not mutate any original set")
     public void testChainedNoMutation() {
         IntegerSet setC = new IntegerSet();
-        setC.add(3); setC.add(5);
+        setC.add(3);
+        setC.add(5);
         set1.union(set2).intersect(setC);
         assertEquals(3, set1.length());
         assertEquals(3, set2.length());
