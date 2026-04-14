@@ -1,4 +1,4 @@
-package org.howard.edu.lsp.assignment5;
+package org.howard.edu.lsp.assignment6;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,11 +127,11 @@ public final class IntegerSet {
      * Returns the largest element in this set.
      *
      * @return the maximum integer element
-     * @throws IntegerSetException if the set is empty
+     * @throws IllegalStateException if the set is empty
      */
     public int largest() {
         if (isEmpty()) {
-            throw new IntegerSetException("Set is empty — cannot call largest()");
+            throw new IllegalStateException("Set is empty — cannot call largest()");
         }
         return Collections.max(set);
     }
@@ -140,11 +140,11 @@ public final class IntegerSet {
      * Returns the smallest element in this set.
      *
      * @return the minimum integer element
-     * @throws IntegerSetException if the set is empty
+     * @throws IllegalStateException if the set is empty
      */
     public int smallest() {
         if (isEmpty()) {
-            throw new IntegerSetException("Set is empty — cannot call smallest()");
+            throw new IllegalStateException("Set is empty — cannot call smallest()");
         }
         return Collections.min(set);
     }
@@ -179,11 +179,11 @@ public final class IntegerSet {
      *
      * @param intSetb the other IntegerSet; must not be null
      * @return a new IntegerSet equal to A ∪ B
-     * @throws IntegerSetException if intSetb is null
+     * @throws IllegalArgumentException if intSetb is null
      */
     public IntegerSet union(IntegerSet intSetb) {
         if (intSetb == null) {
-            throw new IntegerSetException("Argument to union() must not be null");
+            throw new IllegalArgumentException("Argument to union() must not be null");
         }
         HashSet<Integer> deduped = new HashSet<>(set);
         deduped.addAll(intSetb.getCopy());
@@ -198,11 +198,11 @@ public final class IntegerSet {
      *
      * @param intSetb the other IntegerSet; must not be null
      * @return a new IntegerSet equal to A ∩ B
-     * @throws IntegerSetException if intSetb is null
+     * @throws IllegalArgumentException if intSetb is null
      */
     public IntegerSet intersect(IntegerSet intSetb) {
         if (intSetb == null) {
-            throw new IntegerSetException("Argument to intersect() must not be null");
+            throw new IllegalArgumentException("Argument to intersect() must not be null");
         }
         ArrayList<Integer> temp = getCopy();
         temp.retainAll(intSetb.getCopy());
@@ -217,11 +217,11 @@ public final class IntegerSet {
      *
      * @param intSetb the subtrahend IntegerSet; must not be null
      * @return a new IntegerSet equal to A − B
-     * @throws IntegerSetException if intSetb is null
+     * @throws IllegalArgumentException if intSetb is null
      */
     public IntegerSet diff(IntegerSet intSetb) {
         if (intSetb == null) {
-            throw new IntegerSetException("Argument to diff() must not be null");
+            throw new IllegalArgumentException("Argument to diff() must not be null");
         }
         ArrayList<Integer> temp = getCopy();
         temp.removeAll(intSetb.getCopy());
@@ -237,11 +237,11 @@ public final class IntegerSet {
      *
      * @param intSetb the IntegerSet from which this set is subtracted; must not be null
      * @return a new IntegerSet equal to B − A
-     * @throws IntegerSetException if intSetb is null
+     * @throws IllegalArgumentException if intSetb is null
      */
     public IntegerSet complement(IntegerSet intSetb) {
         if (intSetb == null) {
-            throw new IntegerSetException("Argument to complement() must not be null");
+            throw new IllegalArgumentException("Argument to complement() must not be null");
         }
         ArrayList<Integer> temp = intSetb.getCopy();
         temp.removeAll(getCopy());
