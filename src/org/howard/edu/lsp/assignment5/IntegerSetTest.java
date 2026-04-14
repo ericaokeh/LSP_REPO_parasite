@@ -186,9 +186,9 @@ public class IntegerSetTest {
     }
 
     @Test
-    @DisplayName("largest() on an empty set throws IntegerSetException")
+    @DisplayName("largest() on an empty set throws IllegalStateException")
     public void testLargestEmptyThrows() {
-        assertThrows(IntegerSetException.class, () -> emptySet.largest());
+        assertThrows(IllegalStateException.class, () -> emptySet.largest());
     }
 
     @Test
@@ -208,9 +208,9 @@ public class IntegerSetTest {
     }
 
     @Test
-    @DisplayName("smallest() on an empty set throws IntegerSetException")
+    @DisplayName("smallest() on an empty set throws IllegalStateException")
     public void testSmallestEmptyThrows() {
-        assertThrows(IntegerSetException.class, () -> emptySet.smallest());
+        assertThrows(IllegalStateException.class, () -> emptySet.smallest());
     }
 
     @Test
@@ -311,9 +311,9 @@ public class IntegerSetTest {
     }
 
     @Test
-    @DisplayName("union() throws IntegerSetException when argument is null")
+    @DisplayName("union() throws IllegalArgumentException when argument is null")
     public void testUnionNull() {
-        assertThrows(IntegerSetException.class, () -> set1.union(null));
+        assertThrows(IllegalArgumentException.class, () -> set1.union(null));
     }
 
     // -----------------------------------------------------------------------
@@ -357,9 +357,9 @@ public class IntegerSetTest {
     }
 
     @Test
-    @DisplayName("intersect() throws IntegerSetException when argument is null")
+    @DisplayName("intersect() throws IllegalArgumentException when argument is null")
     public void testIntersectNull() {
-        assertThrows(IntegerSetException.class, () -> set1.intersect(null));
+        assertThrows(IllegalArgumentException.class, () -> set1.intersect(null));
     }
 
     // -----------------------------------------------------------------------
@@ -400,9 +400,9 @@ public class IntegerSetTest {
     }
 
     @Test
-    @DisplayName("diff() throws IntegerSetException when argument is null")
+    @DisplayName("diff() throws IllegalArgumentException when argument is null")
     public void testDiffNull() {
-        assertThrows(IntegerSetException.class, () -> set1.diff(null));
+        assertThrows(IllegalArgumentException.class, () -> set1.diff(null));
     }
 
     // -----------------------------------------------------------------------
@@ -439,9 +439,9 @@ public class IntegerSetTest {
     }
 
     @Test
-    @DisplayName("complement() throws IntegerSetException when argument is null")
+    @DisplayName("complement() throws IllegalArgumentException when argument is null")
     public void testComplementNull() {
-        assertThrows(IntegerSetException.class, () -> set1.complement(null));
+        assertThrows(IllegalArgumentException.class, () -> set1.complement(null));
     }
 
     // -----------------------------------------------------------------------
