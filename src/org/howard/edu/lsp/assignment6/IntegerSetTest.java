@@ -47,6 +47,13 @@ public class IntegerSetTest {
         assertEquals(0, set1.length());
     }
 
+    @Test
+    @DisplayName("clear() - edge case: calling clear() on an already-empty set is safe")
+    public void testClearEdgeAlreadyEmpty() {
+        emptySet.clear();
+        assertTrue(emptySet.isEmpty());
+    }
+
     // -----------------------------------------------------------------------
     // length()
     // -----------------------------------------------------------------------
@@ -54,6 +61,12 @@ public class IntegerSetTest {
     @DisplayName("length() - normal case: returns correct cardinality")
     public void testLengthNormal() {
         assertEquals(3, set1.length());
+    }
+
+    @Test
+    @DisplayName("length() - edge case: returns 0 for empty set")
+    public void testLengthEdgeEmpty() {
+        assertEquals(0, emptySet.length());
     }
 
     // -----------------------------------------------------------------------
@@ -123,6 +136,14 @@ public class IntegerSetTest {
     }
 
     @Test
+    @DisplayName("smallest() - edge case: single element")
+    public void testSmallestEdgeSingleElement() {
+        IntegerSet single = new IntegerSet();
+        single.add(42);
+        assertEquals(42, single.smallest());
+    }
+
+    @Test
     @DisplayName("smallest() - edge case: empty (exception)")
     public void testSmallestEdgeEmptyException() {
         assertThrows(IllegalStateException.class, () -> emptySet.smallest());
@@ -166,10 +187,15 @@ public class IntegerSetTest {
     // isEmpty()
     // -----------------------------------------------------------------------
     @Test
-    @DisplayName("isEmpty() - normal/edge case: empty vs non-empty")
-    public void testIsEmptyEmptyVsNonEmpty() {
-        assertTrue(emptySet.isEmpty(), "emptySet should be empty");
+    @DisplayName("isEmpty() - normal case: returns false on a non-empty set")
+    public void testIsEmptyNormal() {
         assertFalse(set1.isEmpty(), "set1 should be non-empty");
+    }
+
+    @Test
+    @DisplayName("isEmpty() - edge case: returns true on an empty set")
+    public void testIsEmptyEdge() {
+        assertTrue(emptySet.isEmpty(), "emptySet should be empty");
     }
 
     // -----------------------------------------------------------------------
@@ -187,6 +213,12 @@ public class IntegerSetTest {
     public void testUnionEdgeWithEmptySet() {
         IntegerSet result = set1.union(emptySet);
         assertTrue(result.equals(set1)); // Union with empty is the original set
+    }
+
+    @Test
+    @DisplayName("union() - edge case: null argument throws exception")
+    public void testUnionEdgeNull() {
+        assertThrows(IllegalArgumentException.class, () -> set1.union(null));
     }
 
     // -----------------------------------------------------------------------
@@ -212,6 +244,12 @@ public class IntegerSetTest {
         assertTrue(result.isEmpty());
     }
 
+    @Test
+    @DisplayName("intersect() - edge case: null argument throws exception")
+    public void testIntersectEdgeNull() {
+        assertThrows(IllegalArgumentException.class, () -> set1.intersect(null));
+    }
+
     // -----------------------------------------------------------------------
     // diff()
     // -----------------------------------------------------------------------
@@ -231,6 +269,12 @@ public class IntegerSetTest {
         
         IntegerSet result = set1.diff(copy);
         assertTrue(result.isEmpty()); // A - A = empty set
+    }
+
+    @Test
+    @DisplayName("diff() - edge case: null argument throws exception")
+    public void testDiffEdgeNull() {
+        assertThrows(IllegalArgumentException.class, () -> set1.diff(null));
     }
 
     // -----------------------------------------------------------------------
@@ -255,6 +299,12 @@ public class IntegerSetTest {
         // B - A for disjoint sets is just B
         IntegerSet result = a.complement(b);
         assertTrue(result.equals(b)); 
+    }
+
+    @Test
+    @DisplayName("complement() - edge case: null argument throws exception")
+    public void testComplementEdgeNull() {
+        assertThrows(IllegalArgumentException.class, () -> set1.complement(null));
     }
 
     // -----------------------------------------------------------------------
