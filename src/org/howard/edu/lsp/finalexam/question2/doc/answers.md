@@ -1,10 +1,3 @@
-Part 2:
+Template Method Design Explanation
 
-Fix A: Explanation
-Not correct. Synchronizing only getNextId() ensures that ID generation is thread-safe, but it does not protect the shared requests list. Multiple threads could still modify the list concurrently, leading to race conditions.
-
-Fix B: Explanation
-Correct. Synchronizing the entire addRequest() method ensures that both ID generation and adding to the list occur atomically. This prevents race conditions and guarantees thread safety.
-
-Fix C: Explanation
-Not correct. Synchronizing getRequests() only protects read access to the list. It does not prevent concurrent modifications during addRequest(), so race conditions can still occur.
+The Template Method pattern is implemented in the abstract Report class through the generateReport() method, which defines a fixed workflow: loadData(), formatHeader(), formatBody(), and formatFooter(). This method ensures that all reports follow the same structure while allowing subclasses to customize specific steps. The StudentReport and CourseReport classes override these abstract methods to provide their own data and formatting. Polymorphism is demonstrated in the driver by storing different report types in a List<Report> and calling generateReport() on each object. This design improves maintainability by separating common workflow logic from specific implementations.
